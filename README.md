@@ -193,6 +193,21 @@ Volendo ci si puo' segnare da dove ripartire. Ci sono dei client specializzati c
 
 Lo stream usa un protocollo diverso.
 
+### Clustering
+
+Occorre avere un cookie con cui le varie istanze di RabbitMQ si identificano.
+E' uno standard erlang cookie.
+
+Vedi https://github.com/coders51/rabbitmq-devops per un repo che crea un numero dispari di VMs con RabbitMQ in cluster.
+
+### RabbitMQ monitoraggio
+
+I parametri che interessano di piu' sono i messagge unacked e i messaggi in dead letter queue.
+
+### RabbitMQ production checklist
+
+Vedi https://www.rabbitmq.com/production-checklist.html
+
 ## Domande
 
 Q: come si integra nei sistemi di monitoraggio?
