@@ -175,23 +175,37 @@ Va ad un coda dead letter queue che ha il binding con dead letter exchange.
 
 ...
 
+### Gestire errori in fase di pubblicazione.
+Puo' succdere che la connessione si interrompa mentre si sta pubblicando un messaggio.
+In questo caso il messaggio viene perso.
+
+In typescrict si fa un `channel.waitForConfirms()` che ritorna una promessa
+che viene risolta quando il messaggio viene pubblicato.
+
+In Python si usa `channel.confirm_delivery(callback)`.
+
+### Code di tipo stream
+
+Nascono da un lavoro della community.
+Se consumo da quelle code ma accettano un parametro `x-stream-offset` che permette di specificare da dove iniziare a leggere.
+Questo permette di avere messaggi persistenti che possono essere letti e riletti.
+Volendo ci si puo' segnare da dove ripartire. Ci sono dei client specializzati che ricordano l'ultimo messaggio letto e fanno ripartire lo stream da lì.
+
+Lo stream usa un protocollo diverso.
+
 ## Domande
 
 Q: come si integra nei sistemi di monitoraggio?
 
-A: ...
+A: Prometeus ha dei plugin per RabbitMQ.
 
-Q: come si fa il failover?
+Q: come si scala e fa failover?
 
-A:
-
-Q: come si scala?
-
-A:
+A: Ci sono diversi modi per fare clustering. Da guardare lo shovel che permette di spostare messaggi da un cluster ad un altro.
 
 Q: E' possibile fare un sistema di messaggistica distribuito usando un RabbitMQ master che smista ad altri RabbitMQ?
 
-A:
+A: Si, si puo' fare con lo shovel.
 
 Q. Qual e' il TTL di default di un messaggio?
 
@@ -199,4 +213,5 @@ A: E' impostato quando si crea la coda.
 
 Q. E' possibile fare debouncing dei messaggi?
 
-A:
+A: Con le code di tipo stream e' possibile gestire la deduplicazione con un plugin impostando un parametro, ma non il debouncing.
+Il messaggi successivi al primo che hanno una certa proprieta' vengono scartati.
