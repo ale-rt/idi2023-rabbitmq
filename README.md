@@ -116,6 +116,10 @@ Il carattere `*` matcha una sottoparte della routing key, mentre il carattere `#
 
 Per esempio `foo.*` matcha `foo.bar` *ma non* `foo.bar.baz`.
 Per esempio `foo.#` matcha `foo.bar` *e* `foo.bar.baz`.
+Nota che `foo#` non matcha ne' `foo` ne' `foo.bar`.'
+Nota che `foo.*.#` matcha `foo.bar` e `foo.bar.baz.buz`.
+
+*N.B.*: c'e' un limite di 255 byte sulla routing key.
 
 ## Domande
 
