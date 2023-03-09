@@ -11,8 +11,8 @@ def callback(ch, method, properties, body):
 
 with pika.BlockingConnection(pika.ConnectionParameters("localhost")) as connection:
     channel = connection.channel()
-    # Read messages from exchange example1 which is of type direct
-    # for all the routing keys
+    # Read messages from exchange example3 which is of type topic
+    # for routing keys that matched the routing_key variable
     channel.exchange_declare(exchange="example3", exchange_type="topic")
     result = channel.queue_declare(queue="")
     queue_name = result.method.queue
