@@ -144,9 +144,36 @@ Se il consumer va in errore il messaggio viene rimesso in coda.
 Si puo' fare dando a RabbitMQ un `nack` invece di un `ack`.
 RabbitMQ ti dice se il messaggio e' stato "Redelivered" in seguito ad un *nack*.
 
-# Esercizio 4: ack e nack
+### Esercizio 4: ack e nack
 
 La funzione di callback del consumer se riceve un messaggio manda un nack se non e' redelivered, altrimenti manda un ack.
+
+Esistono code di tipo quorum che tengono il conto delle volte che un messaggio e' stato processato.
+Le code di tipo quorum hanno anche la possibilita' di limitare il numero di retry per coda (delivery limit).
+
+Il problema e' che se questo e' impostato sulla coda poi non e' piu' modificabile.
+
+Il problema puo' essere risolto applicando una policy.
+
+Le policy si possono applicare sia alle code che agli exchange.
+
+### Messaggi scartati
+
+Se un messaggio viene scartato, RabbitMQ lo invia ad un exchange di tipo dead letter exchange che potrebbe non essere impostato.
+
+E' sempre una buona idea avere un dead letter exchange per controllare che non ci siano messaggi scartati.
+C'e' un altro caso in cui un messaggio viene scartato, ovvero quando un exchange non ha bindings con nessuna coda.
+In questo caso si puo' configurare una policy che configura per l'exchange un alternate exchange.
+
+### Esercizio 5: Dead letter exchange
+
+Crea coda quorum con dead letter exchange.
+Dopo 10 volte lo scarto.
+Va ad un coda dead letter queue che ha il binding con dead letter exchange.
+
+**Da completare**, prevede al configurazione manuale delle code e degli exchange.
+
+...
 
 ## Domande
 
@@ -168,7 +195,7 @@ A:
 
 Q. Qual e' il TTL di default di un messaggio?
 
-A:
+A: E' impostato quando si crea la coda.
 
 Q. E' possibile fare debouncing dei messaggi?
 
