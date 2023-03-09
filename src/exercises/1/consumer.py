@@ -14,7 +14,7 @@ with pika.BlockingConnection(pika.ConnectionParameters("localhost")) as connecti
     # Read messages from exchange example1 which is of type direct
     # for all the routing keys
     channel.exchange_declare(exchange="example1", exchange_type="direct")
-    result = channel.queue_declare(queue="", exclusive=True)
+    result = channel.queue_declare(queue="queue1")
     queue_name = result.method.queue
     for routing_key in routing_keys:
         channel.queue_bind(
