@@ -88,6 +88,17 @@ src/exercises/1$ python consumer.py info warning
 
 Se nessun parametro viene passato, il consumer assume una routing key di tipo info.
 
+### Esercizio 2: Exchange di tipo fanout
+
+Abbiamo un `producer.py` che invia ogni secondo un messaggio ad un exchange di tipo fanout.
+
+Tutti i consumers ricevono tutti i messaggi.
+
+Lo svantaggio e' che:
+
+- la routing key non viene usata
+- RabbitMQ puo' andare in crisi se deve creare o distruggere molte code
+
 ## Domande
 
 Q: come si integra nei sistemi di monitoraggio?
