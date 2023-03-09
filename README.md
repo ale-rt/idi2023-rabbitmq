@@ -106,6 +106,7 @@ Q: come si integra nei sistemi di monitoraggio?
 A: ...
 
 Q: come si fa il failover?
+
 A:
 
 Q: come si scala?
