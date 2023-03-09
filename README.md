@@ -99,6 +99,12 @@ Lo svantaggio e' che:
 - la routing key non viene usata
 - RabbitMQ puo' andare in crisi se deve creare o distruggere molte code
 
+### Differenza tra durable e auto_delete
+
+Le code con `auto_delete` vengono distrutte quando non ci sono piu' consumers che leggono da quelle code.
+
+Le code con `durable` vengono salvate su disco e non vengono distrutte quando RabbitMQ viene riavviato, altrimenti andrebbero perse.
+
 ## Domande
 
 Q: come si integra nei sistemi di monitoraggio?
