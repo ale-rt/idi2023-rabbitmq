@@ -121,6 +121,16 @@ Nota che `foo.*.#` matcha `foo.bar` e `foo.bar.baz.buz`.
 
 *N.B.*: c'e' un limite di 255 byte sulla routing key.
 
+### Parametri delle code
+
+**Lazy**: se e' attivo RabbitMQ non tiene i messaggi in memoria ma li salva su disco.
+Utile per code di debug o per code da processare in un secondo momento con un batch (modalita' di utilizzo di RabbitMQ sconsigliata).
+
+**Max length**: se e' attivo RabbitMQ immagazina al massimo un certo numero di messaggi nella coda.
+Ci sono diversi modi per gestire l'overflow, ma lo standard e' di scartare i messaggi piu' vecchi quando l'N+1-esimo messaggio arriva.
+
+**Max length bytes**: come sopra ma si misura la dimensione dei messaggi in byte.
+
 ## Domande
 
 Q: come si integra nei sistemi di monitoraggio?
