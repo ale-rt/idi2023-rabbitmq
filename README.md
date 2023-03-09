@@ -131,6 +131,23 @@ Ci sono diversi modi per gestire l'overflow, ma lo standard e' di scartare i mes
 
 **Max length bytes**: come sopra ma si misura la dimensione dei messaggi in byte.
 
+### Modalita' di utilizzo di consumo
+
+**auto ack**: il messaggio viene rimosso dalla coda appena e' stato processato.
+Se il consumer va in errore il messaggio viene perso.
+Si consiglia di evitarlo.
+
+### Cosa fare se il consumer va in errore
+
+Supponendo di non avere l'auto ack, il messaggio viene rimosso dalla coda solo se il consumer invia un ack.
+Se il consumer va in errore il messaggio viene rimesso in coda.
+Si puo' fare dando a RabbitMQ un `nack` invece di un `ack`.
+RabbitMQ ti dice se il messaggio e' stato "Redelivered" in seguito ad un *nack*.
+
+# Esercizio 4: ack e nack
+
+La funzione di callback del consumer se riceve un messaggio manda un nack se non e' redelivered, altrimenti manda un ack.
+
 ## Domande
 
 Q: come si integra nei sistemi di monitoraggio?
@@ -146,5 +163,13 @@ Q: come si scala?
 A:
 
 Q: E' possibile fare un sistema di messaggistica distribuito usando un RabbitMQ master che smista ad altri RabbitMQ?
+
+A:
+
+Q. Qual e' il TTL di default di un messaggio?
+
+A:
+
+Q. E' possibile fare debouncing dei messaggi?
 
 A:
