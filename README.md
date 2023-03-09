@@ -105,6 +105,18 @@ Le code con `auto_delete` vengono distrutte quando non ci sono piu' consumers ch
 
 Le code con `durable` vengono salvate su disco e non vengono distrutte quando RabbitMQ viene riavviato, altrimenti andrebbero perse.
 
+### Esercizio 3: Exchange di tipo topic
+
+Gli exchange di tipo topic sono molto potenti e flessibili.
+Assomigliano ai direct ma e' possibile usare dei caratteri speciali per fare match di routing key.
+RabbitMQ si aspetta rounting keys separate da `.`.
+
+I caratteri speciali `*` e `#` possono essere usati per filtrare sottoparti della routing key.
+Il carattere `*` matcha una sottoparte della routing key, mentre il carattere `#` matcha tutte le sottoparti rimanenti della routing key.
+
+Per esempio `foo.*` matcha `foo.bar` *ma non* `foo.bar.baz`.
+Per esempio `foo.#` matcha `foo.bar` *e* `foo.bar.baz`.
+
 ## Domande
 
 Q: come si integra nei sistemi di monitoraggio?
